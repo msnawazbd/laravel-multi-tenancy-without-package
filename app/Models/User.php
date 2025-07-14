@@ -50,7 +50,7 @@ class User extends Authenticatable
     public function tenants()
     {
         // return $this->belongsToMany(Tenant::class)->wherePivot('is_active', true);
-        return $this->belongsToMany(Tenant::class);
+        return $this->belongsToMany(Tenant::class)->withPivot('is_owner');
     }
 
     public function current_tenant()

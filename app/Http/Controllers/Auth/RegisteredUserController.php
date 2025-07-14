@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $tenant = Tenant::create(['name' => $request->name . '\'s Tenant']);
-        $tenant->users()->attach($user->id);
+        $tenant->users()->attach($user->id, ['is_owner' => true]);
         $user->update(['current_tenant_id' => $tenant->id]);
 
         event(new Registered($user));
