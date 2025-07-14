@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use App\Http\Trait\FilterByUser;
+use App\Http\Trait\FilterByTenant;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    // use FilterByUser;
+    use FilterByTenant;
     protected $fillable = ['name', 'project_id', 'user_id'];
 
 
-    protected static function boot()
+    /*protected static function boot()
     {
         parent::boot();
 
@@ -21,7 +21,7 @@ class Task extends Model
                 $query->where('user_id', auth()->id());
             });
         });
-    }
+    }*/
 
 
     /**
@@ -32,3 +32,4 @@ class Task extends Model
         return $this->belongsTo(Project::class);
     }
 }
+

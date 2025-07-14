@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'current_tenant_id'
     ];
 
     /**
@@ -44,5 +45,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function tenants()
+    {
+        // return $this->belongsToMany(Tenant::class)->wherePivot('is_active', true);
+        return $this->belongsToMany(Tenant::class);
+    }
+
+    public function current_tenant()
+    {
+        return $this->belongsTo(Tenant::class, 'current_tenant_id');
     }
 }

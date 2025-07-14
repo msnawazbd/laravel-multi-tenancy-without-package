@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Http\Trait\FilterByTenant;
 use App\Http\Trait\FilterByUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use FilterByUser;
-    protected $fillable = ['name', 'user_id'];
+    use FilterByTenant;
+    protected $fillable = ['name', 'user_id', 'tenant_id'];
+
 
     /**
      * Get the tasks for the project.

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TenantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,6 +18,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('projects', ProjectController::class)->except(['show']);
     Route::resource('tasks', TaskController::class)->except(['show']);
+
+    Route::get('/tenants/change/{tenantId}', [TenantController::class, 'changeTenant'])->name('tenants.change');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
